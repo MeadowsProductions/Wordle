@@ -124,14 +124,14 @@ button:hover {
     cursor: pointer;
 }
 
-.remaining-letters .notIncluded{
+.remaining-letters .notIncluded, .notIncluded{
     background-color: grey;
 }
 
-.remaining-letters .letterIncluded{
+.remaining-letters .letterIncluded, .letterIncluded{
     background-color: yellow;
 }
 
-.remaining-letters .correctPlace{
+.remaining-letters .correctPlace, .correctPlace{
     background-color: #00ff55;
 }
