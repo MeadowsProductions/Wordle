@@ -81,16 +81,6 @@ const previousGuesses = [];
 // Define the secret word
 let secretWord = generateSecretWord();
 
-document.getElementById("guessInput").addEventListener("input", () => {
-  let input = document.getElementById("guessInput").value;
-  let inputArray = input.split(",");
-  for (let i = 0; i < inputArray.length; i++) {
-    inputArray[i] = inputArray[i].charAt(0).toUpperCase() + inputArray[i].slice(1);
-  }
-  let result = inputArray.join(" ");
-  document.getElementById("guessInput").value = result;
-})
-
 alphabet.forEach(char => document.getElementById(char).addEventListener("click", () => {
     let inputElement = document.getElementById("guessInput");
     if(inputElement.value.length === 5){
@@ -121,6 +111,9 @@ document.addEventListener("keydown", (event) => {
         checkGuess();
         return false;
     }
+    if(key.length === 6){
+        alert("no")
+    }
     if(key === "Backspace"){
         let inputElement = document.getElementById("guessInput");
         let input = inputElement.value.split("");
@@ -128,15 +121,19 @@ document.addEventListener("keydown", (event) => {
         inputElement.value = input.join("");
         return false;
     }
-    if(inputElement.value.length === 5){
-        return false;
+    for(i = 0; i < alphabet.length; i++){
+        if(alphabet[i] === key){
+            if(inputElement.value.length === 5){
+                return false;
+            }
+            inputElement.value = inputElement.value + key;
+            let input = document.getElementById("guessInput").value;
+            let inputArray = input.split(",");
+            for (let i = 0; i < inputArray.length; i++) {
+                inputArray[i] = inputArray[i].charAt(0).toUpperCase() + inputArray[i].slice(1);
+            }
+            let result = inputArray.join(" ");
+            document.getElementById("guessInput").value = result;
+        }
     }
-    inputElement.value = inputElement.value + key;
-    let input = document.getElementById("guessInput").value;
-    let inputArray = input.split(",");
-    for (let i = 0; i < inputArray.length; i++) {
-        inputArray[i] = inputArray[i].charAt(0).toUpperCase() + inputArray[i].slice(1);
-    }
-    let result = inputArray.join(" ");
-    document.getElementById("guessInput").value = result;
 })
